@@ -32,7 +32,7 @@ export function Testimonials() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">What Our Community Says</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of happy travelers who've discovered their perfect weekend getaways
+            Join thousands of happy travelers who&apos;ve discovered their perfect weekend getaways
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-card-foreground mb-6 leading-relaxed">"{testimonial.text}"</p>
+                <p className="text-card-foreground mb-6 leading-relaxed">&ldquo;{testimonial.text}&rdquo;</p>
 
                 <div className="flex items-center gap-3">
                   <img

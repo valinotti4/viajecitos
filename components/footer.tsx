@@ -12,7 +12,7 @@ export function Footer() {
           <div className="text-center">
             <h3 className="text-2xl font-black text-card-foreground mb-4">Ready for Your Next Adventure?</h3>
             <p className="text-muted-foreground mb-6">
-              Don't miss out on exclusive weekend deals. Join our community today!
+              Don&apos;t miss out on exclusive weekend deals. Join our community today!
             </p>
 
             <div className="flex gap-3 max-w-md mx-auto">

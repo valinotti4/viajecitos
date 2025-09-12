@@ -26,7 +26,7 @@ export function HowItWorks() {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">How It Works</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Getting your dream weekend trip is easier than you think. Here's how we make it happen:
+            Getting your dream weekend trip is easier than you think. Here&apos;s how we make it happen:
           </p>
         </div>
 
