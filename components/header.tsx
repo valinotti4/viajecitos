@@ -18,19 +18,13 @@ export function Header() {
             href="#how-it-works"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
-            How It Works
+            Cómo funciona
           </a>
           <a
             href="#testimonials"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
-            Reviews
-          </a>
-          <a
-            href="#subscribe"
-            className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            Subscribe
+            Reseñas
           </a>
         </nav>
       </div>

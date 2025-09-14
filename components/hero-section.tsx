@@ -26,7 +26,10 @@ type FormData = z.infer<typeof formSchema>;
 
 export function HeroSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitMessage, setSubmitMessage] = useState<{ type: 'success' | 'error', text: string } | null>(null);
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: "success" | "error";
+    text: string;
+  } | null>(null);
 
   const {
     register,
@@ -34,9 +37,9 @@ export function HeroSection() {
     setValue,
     watch,
     reset,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(formSchema)
+    resolver: zodResolver(formSchema),
   });
 
   const selectedCity = watch("city");
@@ -46,10 +49,10 @@ export function HeroSection() {
     setSubmitMessage(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const response = await fetch("/api/contact", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
       });
@@ -57,13 +60,16 @@ export function HeroSection() {
       const result = await response.json();
 
       if (result.success) {
-        setSubmitMessage({ type: 'success', text: result.message });
+        setSubmitMessage({ type: "success", text: result.message });
         reset();
       } else {
-        setSubmitMessage({ type: 'error', text: result.message });
+        setSubmitMessage({ type: "error", text: result.message });
       }
     } catch {
-      setSubmitMessage({ type: 'error', text: 'Algo salió mal. Por favor inténtalo de nuevo.' });
+      setSubmitMessage({
+        type: "error",
+        text: "Algo salió mal. Por favor inténtalo de nuevo.",
+      });
     } finally {
       setIsSubmitting(false);
     }
@@ -78,16 +84,17 @@ export function HeroSection() {
           backgroundImage: `url('/beautiful-tropical-beach-with-crystal-clear-water-.jpg')`,
         }}
       >
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/30" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 text-balance">
-            ¡Descubre Tu Escapada de Fin de Semana Perfecta!
+        <div className="max-w-4xl mx-auto bg-black/10 backdrop-blur-sm rounded-3xl p-8 md:p-12">
+          <h1 className="text-4xl md:text-6xl font-black text-white mb-6 text-balance drop-shadow-lg">
+            ¡Descubre tu escapada de fin de semana perfecta!
           </h1>
-          <p className="text-xl md:text-2xl text-white/90 mb-8 text-pretty">
+          <p className="text-xl md:text-2xl text-white/95 mb-8 text-pretty drop-shadow-md">
             Recibe ofertas personalizadas de vuelos, hoteles y actividades
             directamente en tu bandeja de entrada.
             <span className="text-secondary font-semibold">
@@ -114,7 +121,9 @@ export function HeroSection() {
                   className="text-center"
                 />
                 {errors.name && (
-                  <p className="text-xs text-red-500 text-center">{errors.name.message}</p>
+                  <p className="text-xs text-red-500 text-center">
+                    {errors.name.message}
+                  </p>
                 )}
               </div>
 
@@ -126,12 +135,17 @@ export function HeroSection() {
                   className="text-center"
                 />
                 {errors.email && (
-                  <p className="text-xs text-red-500 text-center">{errors.email.message}</p>
+                  <p className="text-xs text-red-500 text-center">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
               <div className="space-y-1">
-                <Select value={selectedCity || ""} onValueChange={(value) => setValue("city", value)}>
+                <Select
+                  value={selectedCity || ""}
+                  onValueChange={(value) => setValue("city", value)}
+                >
                   <SelectTrigger className="text-center">
                     <SelectValue placeholder="Selecciona tu ciudad" />
                   </SelectTrigger>
@@ -149,22 +163,26 @@ export function HeroSection() {
                   </SelectContent>
                 </Select>
                 {errors.city && (
-                  <p className="text-xs text-red-500 text-center">{errors.city.message}</p>
+                  <p className="text-xs text-red-500 text-center">
+                    {errors.city.message}
+                  </p>
                 )}
               </div>
 
               {submitMessage && (
-                <div className={`p-3 rounded-md text-sm text-center ${
-                  submitMessage.type === 'success' 
-                    ? 'bg-green-50 text-green-700 border border-green-200' 
-                    : 'bg-red-50 text-red-700 border border-red-200'
-                }`}>
+                <div
+                  className={`p-3 rounded-md text-sm text-center ${
+                    submitMessage.type === "success"
+                      ? "bg-green-50 text-green-700 border border-green-200"
+                      : "bg-red-50 text-red-700 border border-red-200"
+                  }`}
+                >
                   {submitMessage.text}
                 </div>
               )}
 
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 disabled={isSubmitting}
                 className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3"
               >
@@ -174,7 +192,7 @@ export function HeroSection() {
                     Suscribiendo...
                   </>
                 ) : (
-                  'Recibir Ofertas de Viaje 🌴'
+                  "Recibir Ofertas de Viaje 🌴"
                 )}
               </Button>
 

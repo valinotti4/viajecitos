@@ -5,18 +5,18 @@ export function HowItWorks() {
   const steps = [
     {
       icon: UserPlus,
-      title: "Sign Up",
-      description: "Join our community in seconds with just your email. Tell us your travel preferences!",
+      title: "Regístrate",
+      description: "Únete a nuestra comunidad en segundos con solo tu email. ¡Cuéntanos tus preferencias de viaje!",
     },
     {
       icon: Heart,
-      title: "Get Personalized Deals",
-      description: "We curate amazing weekend trip deals based on your interests, budget, and location.",
+      title: "Recibe Ofertas Personalizadas",
+      description: "Seleccionamos increíbles ofertas de escapadas de fin de semana basadas en tus intereses, presupuesto y ubicación.",
     },
     {
       icon: Plane,
-      title: "Travel!",
-      description: "Book your perfect getaway and create unforgettable memories. Share your adventures with us!",
+      title: "¡Viaja!",
+      description: "Reserva tu escapada perfecta y crea recuerdos inolvidables. ¡Comparte tus aventuras con nosotros!",
     },
   ]
 
@@ -24,9 +24,9 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-20 bg-muted">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">Cómo Funciona</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Getting your dream weekend trip is easier than you think. Here&apos;s how we make it happen:
+            Conseguir tu viaje de fin de semana soñado es más fácil de lo que piensas. Así es como lo hacemos posible:
           </p>
         </div>
 
