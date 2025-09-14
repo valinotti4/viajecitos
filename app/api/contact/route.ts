@@ -3,9 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
 const contactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  city: z.string().min(1, "Please select a city"),
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  email: z.string().email("Por favor ingresa un email válido"),
+  city: z.string().min(1, "Por favor selecciona una ciudad"),
 });
 
 async function addToGoogleSheets(name: string, email: string, city: string) {
@@ -71,7 +71,7 @@ export async function POST(request: NextRequest) {
     // Return success response
     return NextResponse.json(
       { 
-        message: "Successfully subscribed! You'll receive amazing travel deals soon.",
+        message: "¡Suscripción exitosa! Pronto recibirás ofertas increíbles de viaje.",
         success: true 
       },
       { status: 200 }
@@ -84,7 +84,7 @@ export async function POST(request: NextRequest) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { 
-          message: "Please check your information and try again.",
+          message: "Por favor revisa tu información e inténtalo de nuevo.",
           errors: error.errors,
           success: false 
         },
@@ -95,7 +95,7 @@ export async function POST(request: NextRequest) {
     // Handle other errors
     return NextResponse.json(
       { 
-        message: "Something went wrong. Please try again later.",
+        message: "Algo salió mal. Por favor inténtalo más tarde.",
         success: false 
       },
       { status: 500 }

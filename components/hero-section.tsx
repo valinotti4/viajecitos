@@ -17,9 +17,9 @@ import {
 import { MapPin, Calendar, Sparkles, Loader2 } from "lucide-react";
 
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Please enter a valid email address"),
-  city: z.string().min(1, "Please select a city"),
+  name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
+  email: z.string().email("Por favor ingresa un email válido"),
+  city: z.string().min(1, "Por favor selecciona una ciudad"),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -63,7 +63,7 @@ export function HeroSection() {
         setSubmitMessage({ type: 'error', text: result.message });
       }
     } catch {
-      setSubmitMessage({ type: 'error', text: 'Something went wrong. Please try again.' });
+      setSubmitMessage({ type: 'error', text: 'Algo salió mal. Por favor inténtalo de nuevo.' });
     } finally {
       setIsSubmitting(false);
     }
@@ -85,14 +85,14 @@ export function HeroSection() {
       <div className="relative z-10 container mx-auto px-4 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-black text-white mb-6 text-balance">
-            Discover Your Perfect Weekend Getaway!
+            ¡Descubre Tu Escapada de Fin de Semana Perfecta!
           </h1>
           <p className="text-xl md:text-2xl text-white/90 mb-8 text-pretty">
-            Get personalized travel deals for flights, hotels & activities
-            delivered straight to your inbox.
+            Recibe ofertas personalizadas de vuelos, hoteles y actividades
+            directamente en tu bandeja de entrada.
             <span className="text-secondary font-semibold">
               {" "}
-              No spam, just amazing adventures!
+              ¡Sin spam, solo aventuras increíbles!
             </span>
           </p>
 
@@ -102,7 +102,7 @@ export function HeroSection() {
               <div className="flex items-center gap-2 text-primary mb-4">
                 <Sparkles className="h-5 w-5" />
                 <span className="font-semibold">
-                  Join 10,000+ Weekend Warriors
+                  Únete a 10,000+ Aventureros de Fin de Semana
                 </span>
               </div>
 
@@ -110,7 +110,7 @@ export function HeroSection() {
                 <Input
                   {...register("name")}
                   type="text"
-                  placeholder="Enter your name"
+                  placeholder="Ingresa tu nombre"
                   className="text-center"
                 />
                 {errors.name && (
@@ -122,7 +122,7 @@ export function HeroSection() {
                 <Input
                   {...register("email")}
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder="Ingresa tu email"
                   className="text-center"
                 />
                 {errors.email && (
@@ -133,7 +133,7 @@ export function HeroSection() {
               <div className="space-y-1">
                 <Select value={selectedCity || ""} onValueChange={(value) => setValue("city", value)}>
                   <SelectTrigger className="text-center">
-                    <SelectValue placeholder="Select your city" />
+                    <SelectValue placeholder="Selecciona tu ciudad" />
                   </SelectTrigger>
                   <SelectContent>
                     <SelectItem value="madrid">Madrid</SelectItem>
@@ -171,15 +171,15 @@ export function HeroSection() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Subscribing...
+                    Suscribiendo...
                   </>
                 ) : (
-                  'Get My Travel Deals 🌴'
+                  'Recibir Ofertas de Viaje 🌴'
                 )}
               </Button>
 
               <p className="text-xs text-muted-foreground">
-                Free to join • Unsubscribe anytime • No credit card required
+                Gratis • Cancela cuando quieras • No se requiere tarjeta
               </p>
             </form>
           </Card>
@@ -188,15 +188,15 @@ export function HeroSection() {
           <div className="flex items-center justify-center gap-6 mt-8 text-white/80">
             <div className="flex items-center gap-2">
               <MapPin className="h-4 w-4" />
-              <span className="text-sm">50+ Destinations</span>
+              <span className="text-sm">50+ Destinos</span>
             </div>
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
-              <span className="text-sm">Weekly Deals</span>
+              <span className="text-sm">Ofertas Semanales</span>
             </div>
             <div className="flex items-center gap-2">
               <Sparkles className="h-4 w-4" />
-              <span className="text-sm">Personalized</span>
+              <span className="text-sm">Personalizado</span>
             </div>
           </div>
         </div>
