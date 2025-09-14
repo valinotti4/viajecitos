@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
+import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
@@ -44,6 +45,15 @@ export function HeroSection() {
 
   const selectedCity = watch("city");
 
+  const triggerConfetti = () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#ea580c', '#f97316', '#fb923c', '#fed7aa'],
+    });
+  };
+
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
     setSubmitMessage(null);
@@ -62,6 +72,7 @@ export function HeroSection() {
       if (result.success) {
         setSubmitMessage({ type: "success", text: result.message });
         reset();
+        triggerConfetti();
       } else {
         setSubmitMessage({ type: "error", text: result.message });
       }
