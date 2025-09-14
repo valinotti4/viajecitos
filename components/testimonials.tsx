@@ -4,23 +4,23 @@ import { Star } from "lucide-react"
 export function Testimonials() {
   const testimonials = [
     {
-      name: "Sarah M.",
-      location: "Los Angeles",
-      text: "Found an amazing weekend in Bali for $400! The deals are actually legit and the recommendations are spot on.",
+      name: "María G.",
+      location: "Madrid",
+      text: "¡Encontré un fin de semana increíble en Lisboa por 200€! Las ofertas son reales y las recomendaciones perfectas.",
       rating: 5,
       avatar: "/young-woman-smiling-headshot.png",
     },
     {
-      name: "Jake R.",
-      location: "New York",
-      text: "Best travel newsletter ever! Booked 3 trips this year through their deals. My friends are so jealous 😂",
+      name: "Carlos R.",
+      location: "Barcelona",
+      text: "¡El mejor newsletter de viajes! He reservado 3 viajes este año con sus ofertas. Mis amigos están súper celosos 😂",
       rating: 5,
       avatar: "/young-man-smiling-headshot.jpg",
     },
     {
-      name: "Emma K.",
-      location: "Chicago",
-      text: "The personalization is incredible. They actually understand what I like and send deals that match my vibe perfectly.",
+      name: "Ana L.",
+      location: "Valencia",
+      text: "La personalización es increíble. Realmente entienden lo que me gusta y envían ofertas que encajan perfectamente conmigo.",
       rating: 5,
       avatar: "/smiling-curly-woman.png",
     },
@@ -30,9 +30,9 @@ export function Testimonials() {
     <section id="testimonials" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">What Our Community Says</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-foreground mb-4">Lo Que Dice Nuestra Comunidad</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of happy travelers who&apos;ve discovered their perfect weekend getaways
+            Únete a miles de viajeros felices que han descubierto sus escapadas perfectas de fin de semana
           </p>
         </div>
 

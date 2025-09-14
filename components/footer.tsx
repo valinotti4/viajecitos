@@ -32,26 +32,26 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-card-foreground mb-4">Quick Links</h4>
+            <h4 className="font-semibold text-card-foreground mb-4">Enlaces Rápidos</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  About Us
+                  Nosotros
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  How It Works
+                  Cómo Funciona
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Destinations
+                  Destinos
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Contact
+                  Contacto
                 </a>
               </li>
             </ul>
@@ -59,26 +59,26 @@ export function Footer() {
 
           {/* Support */}
           <div>
-            <h4 className="font-semibold text-card-foreground mb-4">Support</h4>
+            <h4 className="font-semibold text-card-foreground mb-4">Soporte</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Help Center
+                  Centro de Ayuda
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Privacy Policy
+                  Política de Privacidad
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Terms of Service
+                  Términos de Servicio
                 </a>
               </li>
               <li>
                 <a href="#" className="hover:text-card-foreground transition-colors">
-                  Unsubscribe
+                  Cancelar Suscripción
                 </a>
               </li>
             </ul>
