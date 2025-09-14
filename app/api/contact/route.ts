@@ -1,6 +1,7 @@
 import { google } from "googleapis";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+import nodemailer from "nodemailer";
 
 const contactSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -57,6 +58,52 @@ async function addToGoogleSheets(name: string, email: string, city: string) {
   }
 }
 
+async function sendNotificationEmail(name: string, email: string, city: string) {
+  try {
+    // Check for required environment variables
+    if (!process.env.SMTP_HOST || 
+        !process.env.SMTP_USER || 
+        !process.env.SMTP_PASS || 
+        !process.env.NOTIFICATION_EMAIL) {
+      console.warn("Email configuration not complete");
+      return;
+    }
+
+    // Create transporter
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,
+      port: 587,
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    // Email content
+    const mailOptions = {
+      from: process.env.SMTP_USER,
+      to: process.env.NOTIFICATION_EMAIL,
+      subject: "🌴 Nueva Suscripción - Viajecitos y más",
+      html: `
+        <h2>Nueva suscripción recibida</h2>
+        <p><strong>Nombre:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Ciudad:</strong> ${city}</p>
+        <p><strong>Fecha:</strong> ${new Date().toLocaleString("es-AR", {
+          timeZone: "America/Argentina/Buenos_Aires",
+        })}</p>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+    console.log(`Notification email sent for: ${email}`);
+  } catch (error) {
+    console.error("Error sending notification email:", error);
+    // Don't throw error - we want the form to still work even if email fails
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -65,8 +112,11 @@ export async function POST(request: NextRequest) {
     const validatedData = contactSchema.parse(body);
     const { name, email, city } = validatedData;
 
-    // Add to Google Sheets
-    await addToGoogleSheets(name, email, city);
+    // Add to Google Sheets and send notification email
+    await Promise.all([
+      addToGoogleSheets(name, email, city),
+      sendNotificationEmail(name, email, city),
+    ]);
 
     // Return success response
     return NextResponse.json(
