@@ -2,9 +2,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Plane, Instagram, Twitter, Mail, Sparkles } from "lucide-react";
 import { SubscriptionForm } from "@/components/subscription-form";
+import Link from "next/link";
 
 export function Footer() {
-
   return (
     <footer className="bg-card py-16">
       <div className="container mx-auto px-4">
@@ -18,7 +18,8 @@ export function Footer() {
               </h3>
             </div>
             <p className="text-muted-foreground mb-6">
-              No te pierdas las ofertas exclusivas de fin de semana. ¡Únete a nuestra comunidad hoy!
+              No te pierdas las ofertas exclusivas de fin de semana. ¡Únete a
+              nuestra comunidad hoy!
             </p>
 
             <SubscriptionForm
@@ -38,10 +39,14 @@ export function Footer() {
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
               <Plane className="h-6 w-6 text-primary" />
-              <span className="font-bold text-xl text-card-foreground">Viajecitos y más</span>
+              <span className="font-bold text-xl text-card-foreground">
+                Viajecitos y más
+              </span>
             </div>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Tu compañero perfecto para descubrir escapadas de fin de semana increíbles. Encuentra destinos únicos y ofertas exclusivas sin gastar de más.
+              Tu compañero perfecto para descubrir escapadas de fin de semana
+              increíbles. Encuentra destinos únicos y ofertas exclusivas sin
+              gastar de más.
             </p>
             <div className="flex gap-4">
               <Button variant="ghost" size="sm" className="p-2">
@@ -58,25 +63,39 @@ export function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-card-foreground mb-4">Enlaces Rápidos</h4>
+            <h4 className="font-semibold text-card-foreground mb-4">
+              Enlaces Rápidos
+            </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Nosotros
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Cómo Funciona
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Destinos
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Contacto
                 </a>
               </li>
@@ -88,22 +107,34 @@ export function Footer() {
             <h4 className="font-semibold text-card-foreground mb-4">Soporte</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Centro de Ayuda
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <Link
+                  href="/privacy_policy"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Política de Privacidad
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Términos de Servicio
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-card-foreground transition-colors">
+                <a
+                  href="#"
+                  className="hover:text-card-foreground transition-colors"
+                >
                   Cancelar Suscripción
                 </a>
               </li>
@@ -113,9 +144,12 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2024 Viajecitos y más. Hecho con ❤️ para aventureros de fin de semana.</p>
+          <p>
+            &copy; 2024 Viajecitos y más. Hecho con ❤️ para aventureros de fin
+            de semana.
+          </p>
         </div>
       </div>
     </footer>
-  )
+  );
 }

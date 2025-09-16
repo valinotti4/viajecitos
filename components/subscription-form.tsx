@@ -198,7 +198,7 @@ export function SubscriptionForm({
               rel="noopener noreferrer"
               className="text-primary hover:underline inline-flex items-center gap-1"
             >
-              política de privacidad
+              Política de privacidad
               <ExternalLink className="h-3 w-3" />
             </Link>
           </label>
