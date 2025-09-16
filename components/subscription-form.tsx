@@ -14,12 +14,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loader2 } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Loader2, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
   email: z.string().email("Por favor ingresa un email válido"),
   city: z.string().min(1, "Por favor selecciona una ciudad"),
+  privacyPolicy: z.boolean().refine((val) => val === true, {
+    message: "Debes aceptar la política de privacidad",
+  }),
 });
 
 type FormData = z.infer<typeof formSchema>;
@@ -61,6 +66,7 @@ export function SubscriptionForm({
   });
 
   const selectedCity = watch("city");
+  const privacyPolicyAccepted = watch("privacyPolicy");
 
   const triggerConfetti = () => {
     confetti({
@@ -106,8 +112,15 @@ export function SubscriptionForm({
   const inputClassName = layout === "vertical" ? "text-center" : "text-center";
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={`space-y-4 ${className}`}>
-      <div className={layout === "horizontal" ? "grid md:grid-cols-3 gap-4" : "space-y-4"}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={`space-y-4 ${className}`}
+    >
+      <div
+        className={
+          layout === "horizontal" ? "grid md:grid-cols-3 gap-4" : "space-y-4"
+        }
+      >
         <div className="space-y-1">
           <Input
             {...register("name")}
@@ -116,7 +129,9 @@ export function SubscriptionForm({
             className={inputClassName}
           />
           {errors.name && (
-            <p className="text-xs text-red-500 text-center">{errors.name.message}</p>
+            <p className="text-xs text-red-500 text-center">
+              {errors.name.message}
+            </p>
           )}
         </div>
 
@@ -128,12 +143,17 @@ export function SubscriptionForm({
             className={inputClassName}
           />
           {errors.email && (
-            <p className="text-xs text-red-500 text-center">{errors.email.message}</p>
+            <p className="text-xs text-red-500 text-center">
+              {errors.email.message}
+            </p>
           )}
         </div>
 
         <div className="space-y-1">
-          <Select value={selectedCity || ""} onValueChange={(value) => setValue("city", value)}>
+          <Select
+            value={selectedCity || ""}
+            onValueChange={(value) => setValue("city", value)}
+          >
             <SelectTrigger className={inputClassName}>
               <SelectValue placeholder={cityPlaceholder} />
             </SelectTrigger>
@@ -151,7 +171,41 @@ export function SubscriptionForm({
             </SelectContent>
           </Select>
           {errors.city && (
-            <p className="text-xs text-red-500 text-center">{errors.city.message}</p>
+            <p className="text-xs text-red-500 text-center">
+              {errors.city.message}
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center space-x-2">
+        <Checkbox
+          id="privacyPolicy"
+          checked={privacyPolicyAccepted || false}
+          onCheckedChange={(checked: boolean) =>
+            setValue("privacyPolicy", checked)
+          }
+        />
+        <div className="space-y-1">
+          <label
+            htmlFor="privacyPolicy"
+            className="text-sm text-muted-foreground cursor-pointer"
+          >
+            Acepto la{" "}
+            <Link
+              href="/privacy_policy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline inline-flex items-center gap-1"
+            >
+              política de privacidad
+              <ExternalLink className="h-3 w-3" />
+            </Link>
+          </label>
+          {errors.privacyPolicy && (
+            <p className="text-xs text-red-500">
+              {errors.privacyPolicy.message}
+            </p>
           )}
         </div>
       </div>
