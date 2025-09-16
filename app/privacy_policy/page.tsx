@@ -106,7 +106,7 @@ export default function PrivacyPolicy() {
             <p>
               Nos reservamos el derecho de actualizar esta política de privacidad en cualquier momento.
               Te notificaremos sobre cambios significativos publicando la nueva política en esta página
-              y actualizando la fecha de "última actualización".
+              y actualizando la fecha de &ldquo;última actualización&rdquo;.
             </p>
           </section>
 
