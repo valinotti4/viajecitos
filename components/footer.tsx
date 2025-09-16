@@ -1,10 +1,36 @@
-import { Button } from "@/components/ui/button"
-import { Plane, Instagram, Twitter, Mail } from "lucide-react"
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Plane, Instagram, Twitter, Mail, Sparkles } from "lucide-react";
+import { SubscriptionForm } from "@/components/subscription-form";
 
 export function Footer() {
+
   return (
     <footer className="bg-card py-16">
       <div className="container mx-auto px-4">
+        {/* Newsletter Signup */}
+        <Card className="max-w-2xl mx-auto p-6 md:p-8 mb-12 bg-primary/5 border-primary/20">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Sparkles className="h-6 w-6 text-primary" />
+              <h3 className="text-2xl font-black text-card-foreground">
+                ¿Listo para tu Próxima Aventura?
+              </h3>
+            </div>
+            <p className="text-muted-foreground mb-6">
+              No te pierdas las ofertas exclusivas de fin de semana. ¡Únete a nuestra comunidad hoy!
+            </p>
+
+            <SubscriptionForm
+              layout="horizontal"
+              buttonText="Suscribirme Ahora 🌴"
+              namePlaceholder="Tu nombre"
+              emailPlaceholder="Tu email"
+              cityPlaceholder="Tu ciudad"
+              confettiOrigin={{ y: 0.3 }}
+            />
+          </div>
+        </Card>
 
         {/* Footer Content */}
         <div className="grid md:grid-cols-4 gap-8 mb-8">
