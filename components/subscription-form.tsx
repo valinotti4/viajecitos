@@ -17,6 +17,7 @@ import {
 import { Checkbox } from "@/components/ui/checkbox";
 import { Loader2, ExternalLink } from "lucide-react";
 import Link from "next/link";
+import { trackSignupAttempt, trackNewsletterSignup } from "@/lib/analytics";
 
 const formSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -81,6 +82,9 @@ export function SubscriptionForm({
     setIsSubmitting(true);
     setSubmitMessage(null);
 
+    // Track signup attempt
+    trackSignupAttempt(data.city);
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -93,6 +97,9 @@ export function SubscriptionForm({
       const result = await response.json();
 
       if (result.success) {
+        // Track successful conversion
+        trackNewsletterSignup(data.city);
+
         setSubmitMessage({ type: "success", text: result.message });
         reset();
         triggerConfetti();
