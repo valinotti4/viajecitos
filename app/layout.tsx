@@ -16,7 +16,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: "Viajecitos y más - Escapadas de Fin de Semana Perfectas",
-  description: "Descubre las mejores ofertas de viaje para escapadas de fin de semana. Vuelos, hoteles y actividades personalizadas para jóvenes aventureros. ¡Sin spam, solo aventuras increíbles!",
+  description: "Descubre ofertas exclusivas para escapadas de fin de semana. Vuelos, hoteles y actividades personalizadas. ¡Sin spam, solo aventuras!",
   keywords: "viajes fin de semana, ofertas viajes, escapadas cortas, vuelos baratos, hoteles España, turismo joven, aventuras fin de semana",
   authors: [{ name: "Viajecitos y más" }],
   creator: "Viajecitos y más",
@@ -24,14 +24,14 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     title: "Viajecitos y más - Escapadas de Fin de Semana Perfectas",
-    description: "Tu compañero perfecto para descubrir escapadas de fin de semana increíbles. Ofertas exclusivas en vuelos, hoteles y actividades.",
+    description: "Descubre ofertas exclusivas para escapadas de fin de semana. Vuelos, hoteles y actividades personalizadas. ¡Sin spam, solo aventuras!",
     siteName: "Viajecitos y más",
     locale: "es_ES",
   },
   twitter: {
     card: "summary_large_image",
     title: "Viajecitos y más - Escapadas de Fin de Semana Perfectas",
-    description: "Descubre las mejores ofertas de viaje para escapadas de fin de semana. ¡Sin spam, solo aventuras increíbles!",
+    description: "Descubre ofertas exclusivas para escapadas de fin de semana. Vuelos, hoteles y actividades personalizadas. ¡Sin spam, solo aventuras!",
   },
   robots: {
     index: true,
