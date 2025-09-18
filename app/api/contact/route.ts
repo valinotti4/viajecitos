@@ -12,9 +12,11 @@ const contactSchema = z.object({
 async function addToGoogleSheets(name: string, email: string, city: string) {
   try {
     // Check for required environment variables
-    if (!process.env.GOOGLE_SHEETS_PRIVATE_KEY ||
-        !process.env.GOOGLE_SHEETS_CLIENT_EMAIL ||
-        !process.env.GOOGLE_SHEETS_ID) {
+    if (
+      !process.env.GOOGLE_SHEETS_PRIVATE_KEY ||
+      !process.env.GOOGLE_SHEETS_CLIENT_EMAIL ||
+      !process.env.GOOGLE_SHEETS_ID
+    ) {
       console.warn("Google Sheets credentials not configured");
       return;
     }
@@ -22,7 +24,10 @@ async function addToGoogleSheets(name: string, email: string, city: string) {
     // Authenticate with Google
     const auth = new google.auth.GoogleAuth({
       credentials: {
-        private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(/\\n/g, "\n"),
+        private_key: process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(
+          /\\n/g,
+          "\n"
+        ),
         client_email: process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
       },
       scopes: ["https://www.googleapis.com/auth/spreadsheets"],
@@ -37,7 +42,8 @@ async function addToGoogleSheets(name: string, email: string, city: string) {
     const spreadsheet = await sheets.spreadsheets.get({
       spreadsheetId: process.env.GOOGLE_SHEETS_ID,
     });
-    const sheetName = spreadsheet.data.sheets?.[0]?.properties?.title || "Sheet1";
+    const sheetName =
+      spreadsheet.data.sheets?.[0]?.properties?.title || "Sheet1";
 
     // Append data to the sheet
     await sheets.spreadsheets.values.append({
@@ -45,9 +51,7 @@ async function addToGoogleSheets(name: string, email: string, city: string) {
       range: `${sheetName}!A:E`,
       valueInputOption: "USER_ENTERED",
       requestBody: {
-        values: [
-          [timestamp, name, email, city, "Nuevo"]
-        ],
+        values: [[timestamp, name, email, city, "Nuevo"]],
       },
     });
 
@@ -58,13 +62,19 @@ async function addToGoogleSheets(name: string, email: string, city: string) {
   }
 }
 
-async function sendNotificationEmail(name: string, email: string, city: string) {
+async function sendNotificationEmail(
+  name: string,
+  email: string,
+  city: string
+) {
   try {
     // Check for required environment variables
-    if (!process.env.SMTP_HOST || 
-        !process.env.SMTP_USER || 
-        !process.env.SMTP_PASS || 
-        !process.env.NOTIFICATION_EMAIL) {
+    if (
+      !process.env.SMTP_HOST ||
+      !process.env.SMTP_USER ||
+      !process.env.SMTP_PASS ||
+      !process.env.NOTIFICATION_EMAIL
+    ) {
       console.warn("Email configuration not complete");
       return;
     }
@@ -106,8 +116,24 @@ async function sendNotificationEmail(name: string, email: string, city: string) 
 
 export async function POST(request: NextRequest) {
   try {
+    // CORS Protection - Check origin
+    const origin = request.headers.get("origin");
+    const allowedOrigins = [
+      process.env.NEXT_PUBLIC_SITE_URL,
+      ...(process.env.NODE_ENV === "development"
+        ? ["http://localhost:3000"]
+        : []),
+    ].filter(Boolean);
+
+    if (!origin || !allowedOrigins.includes(origin)) {
+      return NextResponse.json(
+        { message: "Acceso no autorizado", success: false },
+        { status: 403 }
+      );
+    }
+
     const body = await request.json();
-    
+
     // Validate the request data
     const validatedData = contactSchema.parse(body);
     const { name, email, city } = validatedData;
@@ -120,23 +146,23 @@ export async function POST(request: NextRequest) {
 
     // Return success response
     return NextResponse.json(
-      { 
-        message: "¡Suscripción exitosa! Pronto recibirás ofertas increíbles de viaje.",
-        success: true 
+      {
+        message:
+          "¡Suscripción exitosa! Pronto recibirás ofertas increíbles de viaje.",
+        success: true,
       },
       { status: 200 }
     );
-
   } catch (error) {
     console.error("Contact API error:", error);
 
     // Handle validation errors
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { 
+        {
           message: "Por favor revisa tu información e inténtalo de nuevo.",
           errors: error.errors,
-          success: false 
+          success: false,
         },
         { status: 400 }
       );
@@ -144,9 +170,9 @@ export async function POST(request: NextRequest) {
 
     // Handle other errors
     return NextResponse.json(
-      { 
+      {
         message: "Algo salió mal. Por favor inténtalo más tarde.",
-        success: false 
+        success: false,
       },
       { status: 500 }
     );
