@@ -81,7 +81,7 @@ export default function AboutUs() {
               <div className="bg-muted p-6 rounded-lg space-y-3">
                 <div className="text-2xl">🌍</div>
                 <h3 className="text-xl font-semibold">Autenticidad</h3>
-                <p>Precios y planes reales, nada de "ofertas imposibles".</p>
+                <p>Precios y planes reales, nada de &ldquo;ofertas imposibles&rdquo;.</p>
               </div>
 
               <div className="bg-muted p-6 rounded-lg space-y-3">

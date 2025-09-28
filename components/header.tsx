@@ -27,18 +27,18 @@ export function Header() {
           >
             Sobre Nosotros
           </Link>
-          <a
+          <Link
             href="/#how-it-works"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             Cómo funciona
-          </a>
-          <a
+          </Link>
+          <Link
             href="/#testimonials"
             className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
             Reseñas
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

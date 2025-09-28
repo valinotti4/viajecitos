@@ -42,7 +42,7 @@ export default function AvisoLegal() {
             </div>
 
             <p className="mb-6">
-              En adelante, <strong>"Viajecitos y más"</strong> o <strong>"el Sitio Web"</strong>.
+              En adelante, <strong>&ldquo;Viajecitos y más&rdquo;</strong> o <strong>&ldquo;el Sitio Web&rdquo;</strong>.
             </p>
           </section>
 

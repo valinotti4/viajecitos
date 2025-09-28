@@ -124,14 +124,14 @@ export default function PrivacyPolicy() {
             <ul className="list-disc pl-6 space-y-3 mb-6">
               <li><strong>Derecho de acceso:</strong> Es el derecho del Usuario a obtener confirmación de si <strong>Viajecitos y más</strong> está tratando o no sus datos personales y, en caso afirmativo, obtener información sobre sus datos concretos de carácter personal y del tratamiento realizado.</li>
               <li><strong>Derecho de rectificación:</strong> Es el derecho del Usuario a que se modifiquen sus datos personales que resulten ser inexactos o incompletos.</li>
-              <li><strong>Derecho de supresión ("el derecho al olvido"):</strong> Es el derecho del Usuario a obtener la supresión de sus datos personales cuando estos ya no sean necesarios para los fines para los cuales fueron recogidos.</li>
+              <li><strong>Derecho de supresión (&ldquo;el derecho al olvido&rdquo;):</strong> Es el derecho del Usuario a obtener la supresión de sus datos personales cuando estos ya no sean necesarios para los fines para los cuales fueron recogidos.</li>
               <li><strong>Derecho a la limitación del tratamiento:</strong> Es el derecho del Usuario a limitar el tratamiento de sus datos personales en determinadas circunstancias.</li>
               <li><strong>Derecho a la portabilidad de los datos:</strong> En caso de que el tratamiento se efectúe por medios automatizados, el Usuario tendrá derecho a recibir sus datos personales en un formato estructurado.</li>
               <li><strong>Derecho de oposición:</strong> Es el derecho del Usuario a que no se lleve a cabo el tratamiento de sus datos de carácter personal o se cese el tratamiento de los mismos.</li>
             </ul>
 
             <p className="mb-4">
-              El Usuario podrá ejercitar sus derechos mediante comunicación escrita dirigida al Responsable del tratamiento con la referencia "RGPD-https://viajecitosymas.com/", especificando:
+              El Usuario podrá ejercitar sus derechos mediante comunicación escrita dirigida al Responsable del tratamiento con la referencia &ldquo;RGPD-https://viajecitosymas.com/&rdquo;, especificando:
             </p>
             <ul className="list-disc pl-6 space-y-2 mb-6">
               <li>Nombre, apellidos del Usuario y copia del DNI</li>
