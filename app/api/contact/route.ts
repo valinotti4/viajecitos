@@ -2,6 +2,7 @@ import { google } from "googleapis";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { brevoService } from "@/lib/brevo";
 
 const contactSchema = z.object({
   name: z.string().min(2, "El nombre debe tener al menos 2 caracteres"),
@@ -114,6 +115,16 @@ async function sendNotificationEmail(
   }
 }
 
+async function sendWelcomeEmail(name: string, email: string, city: string) {
+  try {
+    await brevoService.sendWelcomeEmail(name, email, city);
+    console.log(`Welcome email sent successfully to: ${email}`);
+  } catch (error) {
+    console.error("Error sending welcome email via Brevo:", error);
+    // Don't throw error - we want the form to still work even if Brevo fails
+  }
+}
+
 export async function POST(request: NextRequest) {
   try {
     // CORS Protection - Check origin
@@ -138,10 +149,11 @@ export async function POST(request: NextRequest) {
     const validatedData = contactSchema.parse(body);
     const { name, email, city } = validatedData;
 
-    // Add to Google Sheets and send notification email
+    // Add to Google Sheets, send notification email, and send welcome email
     await Promise.all([
       addToGoogleSheets(name, email, city),
       sendNotificationEmail(name, email, city),
+      sendWelcomeEmail(name, email, city),
     ]);
 
     // Return success response
