@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,7 +9,7 @@ import { Plane } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 
-export default function UnsubscribePage() {
+function UnsubscribeForm() {
   const searchParams = useSearchParams();
   const emailFromUrl = searchParams.get("email");
 
@@ -116,5 +116,30 @@ export default function UnsubscribePage() {
         )}
       </Card>
     </div>
+  );
+}
+
+export default function UnsubscribePage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gradient-to-b from-amber-50 to-white flex items-center justify-center p-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="flex justify-center mb-4">
+              <Link href="/" className="flex items-center gap-2 text-2xl font-black text-primary">
+                <Plane className="w-6 h-6" />
+                Viajecitos y +
+              </Link>
+            </div>
+            <CardTitle className="text-2xl">Cancelar Suscripción</CardTitle>
+            <CardDescription>
+              Cargando...
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+    }>
+      <UnsubscribeForm />
+    </Suspense>
   );
 }
