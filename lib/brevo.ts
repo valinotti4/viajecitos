@@ -1,27 +1,27 @@
 export class BrevoService {
   private apiKey: string;
-  private baseUrl = 'https://api.brevo.com/v3';
+  private baseUrl = "https://api.brevo.com/v3";
 
   constructor() {
-    this.apiKey = process.env.BREVO_API_KEY || '';
+    this.apiKey = process.env.BREVO_API_KEY || "";
   }
 
   async createContact(name: string, email: string, city: string) {
     const contactData = {
       email: email,
       attributes: {
-        FIRSTNAME: name,
-        CITY: city
+        NOMBRE: name,
+        CIUDAD: city,
       },
-      updateEnabled: true
+      updateEnabled: true,
     };
 
     try {
       const response = await fetch(`${this.baseUrl}/contacts`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'api-key': this.apiKey,
+          "Content-Type": "application/json",
+          "api-key": this.apiKey,
         },
         body: JSON.stringify(contactData),
       });
@@ -29,20 +29,22 @@ export class BrevoService {
       if (!response.ok) {
         if (response.status === 400) {
           const errorData = await response.json();
-          if (errorData.code === 'duplicate_parameter') {
+          if (errorData.code === "duplicate_parameter") {
             console.log(`Contact already exists: ${email}`);
-            return { id: null, message: 'Contact already exists' };
+            return { id: null, message: "Contact already exists" };
           }
         }
         const errorData = await response.text();
         throw new Error(`Brevo API error: ${response.status} - ${errorData}`);
       }
 
-      const result = await response.json();
+      // Check if response has content before parsing JSON
+      const text = await response.text();
+      const result = text ? JSON.parse(text) : { success: true };
       console.log(`Contact created successfully: ${email}`, result);
       return result;
     } catch (error) {
-      console.error('Error creating contact:', error);
+      console.error("Error creating contact:", error);
       throw error;
     }
   }
@@ -51,30 +53,39 @@ export class BrevoService {
     try {
       await this.createContact(name, email, city);
     } catch (error) {
-      console.error('Error creating contact, but continuing with email:', error);
+      console.error(
+        "Error creating contact, but continuing with email:",
+        error
+      );
     }
 
-    const welcomeEmailTemplate = this.getWelcomeEmailTemplate(name, city);
+    const welcomeEmailTemplate = this.getWelcomeEmailTemplate(
+      name,
+      city,
+      email
+    );
 
     const emailData = {
       subject: "¡Bienvenido a Viajecitos y más! 🌴",
       htmlContent: welcomeEmailTemplate,
       sender: {
         name: "Viajecitos y más",
-        email: "contacto@viajecitosymas.com"
+        email: "contacto@viajecitosymas.com",
       },
-      to: [{
-        email: email,
-        name: name
-      }]
+      to: [
+        {
+          email: email,
+          name: name,
+        },
+      ],
     };
 
     try {
       const response = await fetch(`${this.baseUrl}/smtp/email`, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
-          'api-key': this.apiKey,
+          "Content-Type": "application/json",
+          "api-key": this.apiKey,
         },
         body: JSON.stringify(emailData),
       });
@@ -88,12 +99,16 @@ export class BrevoService {
       console.log(`Welcome email sent successfully to ${email}:`, result);
       return result;
     } catch (error) {
-      console.error('Error sending welcome email:', error);
+      console.error("Error sending welcome email:", error);
       throw error;
     }
   }
 
-  private getWelcomeEmailTemplate(name: string, city: string): string {
+  private getWelcomeEmailTemplate(
+    name: string,
+    city: string,
+    email: string
+  ): string {
     return `
 <!DOCTYPE html>
 <html lang="es">
@@ -328,7 +343,9 @@ export class BrevoService {
 
             <p class="message">
                 ¡Estamos emocionados de tenerte en nuestra comunidad de aventureros de fin de semana!
-                Desde ${city}, vas a descubrir las mejores ofertas de viaje personalizadas especialmente para ti.
+                Desde ${
+                  city.charAt(0).toUpperCase() + city.slice(1)
+                }, vas a descubrir las mejores ofertas de viaje personalizadas especialmente para ti.
             </p>
 
             <div class="benefits">
@@ -349,7 +366,7 @@ export class BrevoService {
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
-                        Hoteles boutique con descuentos únicos
+                        Ofertas en alojamiento
                     </li>
                     <li>
                         <svg class="check-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -364,16 +381,6 @@ export class BrevoService {
                         Recomendaciones personalizadas cada semana
                     </li>
                 </ul>
-            </div>
-
-            <div class="cta-section">
-                <p class="cta-text">
-                    <strong>Tu primer destino recomendado llegará esta semana.</strong><br>
-                    Mientras tanto, explora nuestras ofertas actuales:
-                </p>
-                <a href="https://viajecitosymas.com" class="cta-button">
-                    Explorar Ofertas 🌴
-                </a>
             </div>
 
             <p class="message">
@@ -393,14 +400,9 @@ export class BrevoService {
                 Tu compañero perfecto para escapadas de fin de semana
             </p>
 
-            <div class="social-links">
-                <a href="#" class="social-link">📧</a>
-                <a href="#" class="social-link">📱</a>
-                <a href="#" class="social-link">🌐</a>
-            </div>
 
             <p class="unsubscribe">
-                Si ya no deseas recibir estos emails, puedes <a href="#">darte de baja aquí</a>.<br>
+                Si ya no deseas recibir estos emails, puedes <a href="https://viajecitosymas.com/unsubscribe?email=${email}">darte de baja aquí</a>.<br>
                 Viajecitos y más • España
             </p>
         </div>
