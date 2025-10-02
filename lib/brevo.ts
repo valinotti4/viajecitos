@@ -104,6 +104,39 @@ export class BrevoService {
     }
   }
 
+  async unsubscribeContact(email: string) {
+    try {
+      const response = await fetch(
+        `${this.baseUrl}/contacts/${encodeURIComponent(email)}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "api-key": this.apiKey,
+          },
+          body: JSON.stringify({
+            emailBlacklisted: true,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 404) {
+          console.log(`Contact not found in Brevo: ${email}`);
+          return false;
+        }
+        const errorData = await response.text();
+        throw new Error(`Brevo API error: ${response.status} - ${errorData}`);
+      }
+
+      console.log(`Contact unsubscribed successfully: ${email}`);
+      return true;
+    } catch (error) {
+      console.error("Error unsubscribing contact:", error);
+      return false;
+    }
+  }
+
   private getWelcomeEmailTemplate(
     name: string,
     city: string,
