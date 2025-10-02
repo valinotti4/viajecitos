@@ -233,7 +233,7 @@ export function SubscriptionForm({
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3"
+        className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-bold py-3 cursor-pointer"
       >
         {isSubmitting ? (
           <>

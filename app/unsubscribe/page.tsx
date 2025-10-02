@@ -52,9 +52,9 @@ export default function UnsubscribePage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <Link href="/" className="flex items-center gap-2 text-2xl font-black text-orange-600">
+            <Link href="/" className="flex items-center gap-2 text-2xl font-black text-primary">
               <Plane className="w-6 h-6" />
-              Viajecitos y más
+              Viajecitos y +
             </Link>
           </div>
           <CardTitle className="text-2xl">Cancelar Suscripción</CardTitle>
@@ -89,12 +89,12 @@ export default function UnsubscribePage() {
             <CardFooter className="flex flex-col gap-3">
               <Button
                 type="submit"
-                className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600"
+                className="w-full bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 cursor-pointer"
                 disabled={isLoading}
               >
                 {isLoading ? "Procesando..." : "Darme de Baja"}
               </Button>
-              <Link href="/" className="text-sm text-gray-600 hover:text-orange-600 text-center">
+              <Link href="/" className="text-sm text-muted-foreground hover:text-primary transition-colors text-center">
                 Volver al inicio
               </Link>
             </CardFooter>
@@ -106,9 +106,9 @@ export default function UnsubscribePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-lg text-gray-700 mb-6">{message}</p>
+            <p className="text-lg text-foreground mb-6">{message}</p>
             <Link href="/">
-              <Button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600">
+              <Button className="bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 cursor-pointer">
                 Volver al Inicio
               </Button>
             </Link>
