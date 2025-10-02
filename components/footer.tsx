@@ -68,52 +68,44 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="hover:text-card-foreground transition-colors"
                 >
-                  Nosotros
-                </a>
+                  Inicio
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/about"
+                  className="hover:text-card-foreground transition-colors"
+                >
+                  Sobre Nosotros
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#how-it-works"
                   className="hover:text-card-foreground transition-colors"
                 >
                   Cómo Funciona
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/#testimonials"
                   className="hover:text-card-foreground transition-colors"
                 >
-                  Destinos
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-card-foreground transition-colors"
-                >
-                  Contacto
-                </a>
+                  Reseñas
+                </Link>
               </li>
             </ul>
           </div>
 
-          {/* Support */}
+          {/* Legal */}
           <div>
-            <h4 className="font-semibold text-card-foreground mb-4">Soporte</h4>
+            <h4 className="font-semibold text-card-foreground mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-card-foreground transition-colors"
-                >
-                  Centro de Ayuda
-                </a>
-              </li>
               <li>
                 <Link
                   href="/privacy_policy"
@@ -123,20 +115,12 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  href="/aviso-legal"
                   className="hover:text-card-foreground transition-colors"
                 >
-                  Términos de Servicio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="hover:text-card-foreground transition-colors"
-                >
-                  Cancelar Suscripción
-                </a>
+                  Aviso Legal
+                </Link>
               </li>
             </ul>
           </div>

@@ -185,7 +185,7 @@ export function SubscriptionForm({
         </div>
       </div>
 
-      <div className="flex items-center justify-center space-x-2">
+      <div className="flex items-center space-x-2">
         <Checkbox
           id="privacyPolicy"
           checked={privacyPolicyAccepted || false}
@@ -198,16 +198,17 @@ export function SubscriptionForm({
             htmlFor="privacyPolicy"
             className="text-sm text-muted-foreground cursor-pointer"
           >
-            Acepto la{" "}
+            He podido leer y entiendo la{" "}
             <Link
               href="/privacy_policy"
               target="_blank"
               rel="noopener noreferrer"
               className="text-primary hover:underline inline-flex items-center gap-1"
             >
-              Política de privacidad
+              Política de Privacidad
               <ExternalLink className="h-3 w-3" />
             </Link>
+            {" "}y acepto recibir comunicaciones comerciales personalizadas de Viajecitos y+ a través de email.
           </label>
           {errors.privacyPolicy && (
             <p className="text-xs text-red-500">
